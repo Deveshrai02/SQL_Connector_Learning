@@ -1,5 +1,5 @@
 import requests
-
+import json
 url = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1"
 
 headers = {
@@ -9,4 +9,8 @@ headers = {
 
 response = requests.get(url, headers=headers)
 
-print(response.json())
+data = response.json()
+
+with open("top_rated.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
+
